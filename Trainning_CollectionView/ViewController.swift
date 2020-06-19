@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension ViewController: UICollectionViewDataSource {
     
     //表示するセルの個数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -56,6 +56,21 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         
         
         return cell
+    }
+}
+
+extension ViewController: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        moveView(index: indexPath)
+    }
+    
+    func moveView(index: IndexPath) {
+        print(iconArray[index.item])
+        let vc = ContentViewController()
+        vc.iconName = iconArray[index.item]
+        
+        present(vc, animated: true, completion: nil)
     }
 }
 
